@@ -1,0 +1,12 @@
+### signup
+@url_dev=http://localhost:3050/v1/api
+POST {{url_dev}}/access/signup
+Content-Type: application/json
+x-api-key: 159fe76366a62f33a329e9709ed117f680280458db1ea73580a66e456bca4d90f0d1ffeb24344b63115fa9f0293f3992e758076d27fd594393e9204fe8874ee1
+
+{
+    "username": "admin_v1",
+    "password": "pwd_admin_v1",
+    "email": "adminv11@gmail.com"
+}
+
