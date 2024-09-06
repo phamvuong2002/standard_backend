@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <!-- <title>Static Template</title> -->
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+
+<body style="
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #ffffff;
+      font-size: 14px;
+    ">
+  <div style="
+        max-width: 550px;
+        margin: 0 auto;
+        padding: 40px 30px 60px;
+        background: rgba(254,226,226,0.9)  ;
+
+        background-image: linear-gradient(171deg, rgba(255,251,235,1) 18%, rgba(251,207,232,1) 42%, rgba(243,232,255,0.55) 50%, rgba(254,226,226,1) 79%);
+        background-repeat: no-repeat;
+        background-size: 800px 452px;
+        background-position: top center;
+        font-size: 14px;
+        color: #434343;
+      ">
+    <header>
+      <table style="width: 100%;">
+        <tbody>
+          <tr style="height: 0;">
+            <td>
+              <img alt="logo"
+                src="https://res.cloudinary.com/dpxvjknwg/image/upload/v1713781552/logo/logo_bookada_800x400_ghma8h.png"
+                height="50px" style="background-color: transparent; opacity:0.9;" />
+            </td>
+            <td style="text-align: right;">
+              <span style="font-size: 18px; line-height: 30px; color: rgba(239, 68, 68,0.9); font-weight: 550;">
+                {{date}}
+                <!-- 01/01/2024 -->
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </header>
+
+    <main>
+      <div style="
+            margin: 0;
+            margin-top: 60px;
+            padding: 60px 30px 115px;
+            background: #ffffff;
+            border-radius: 30px;
+            text-align: center;
+            
+          ">
+        <div style="width: 100%;  max-width: 400px; margin: 0 auto;">
+          <h1 style="
+                margin: 0;
+                font-size: 24px;
+                font-weight: 600;
+                color: rgba(239,68,68,0.85); 
+              ">
+            MÃ OTP
+          </h1>
+          <p style="
+                margin: 0;
+                margin-top: 20px;
+                font-size: 16px;
+                font-weight: 500;
+              ">
+            Chào bạn,
+          </p>
+          <p style="
+                margin: 0;
+                margin-top: 17px;
+                font-weight: 500;
+                letter-spacing: 0.56px;
+              ">
+            Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi.
+            Vui lòng dùng mã OTP bên dưới để thực hiện xác thực.
+            <!-- <span style="font-weight: 600; color: #1f1f1f;">{{usage}}</span>. -->
+            Mã OTP sẽ có hiệu lực trong vòng
+            <span style="font-weight: 600; color: rgba(239,68,68,0.85); ">{{otp_duration}} phút</span>.
+            Vui lòng không chia sẻ mã OTP này với người khác.
+          </p>
+          <div style="text-align:center; margin:40px auto;">
+            <p style="
+                margin: 0 auto;
+                font-size: 40px;
+                font-weight: 600;
+                color:  rgba(239,68,68,0.85); 
+                letter-spacing: 0.4rem;
+                text-indent:-0.4rem;
+                direction:rtl;
+                display:inline-block;
+                
+              ">
+              {{otp}}
+              <!-- 123456 -->
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <p style="
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 90px;
+            text-align: center;
+            font-weight: 500;
+            color: #8c8c8c;
+          ">
+        Nếu cần sự giúp đỡ, xin hãy liên hệ địa chỉ email
+        <a href="mailto:admin@bookada.io.vn" style="color: #b7298f; text-decoration: none;">bookada@hotmail.com</a>
+
+      </p>
+    </main>
+
+    <footer style="
+          width: 100%;
+          max-width: 490px;
+          margin: 20px auto 0;
+          text-align: center;
+          border-top: 1px solid #e6ebf1;
+          
+        ">
+      <p style="
+            margin: 0;
+            margin-top: 30px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #c839ab;
+          ">
+        Bookada Project
+      </p>
+      <p style="margin: 0; margin-top: 5px; color: #434343;">
+        227 Nguyễn Văn Cừ
+      </p>
+      <!-- <div style="margin: 0; margin-top: 16px;">
+          <a href="" target="_blank" style="display: inline-block;">
+            <img
+              width="36px"
+              alt="Facebook"
+              src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661502815169_682499/email-template-icon-facebook"
+            />
+          </a>
+          <a
+            href=""
+            target="_blank"
+            style="display: inline-block; margin-left: 8px;"
+          >
+            <img
+              width="36px"
+              alt="Instagram"
+              src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661504218208_684135/email-template-icon-instagram"
+          /></a>
+          <a
+            href=""
+            target="_blank"
+            style="display: inline-block; margin-left: 8px;"
+          >
+            <img
+              width="36px"
+              alt="Twitter"
+              src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661503043040_372004/email-template-icon-twitter"
+            />
+          </a>
+          <a
+            href=""
+            target="_blank"
+            style="display: inline-block; margin-left: 8px;"
+          >
+            <img
+              width="36px"
+              alt="Youtube"
+              src="https://archisketch-resources.s3.ap-northeast-2.amazonaws.com/vrstyler/1661503195931_210869/email-template-icon-youtube"
+          /></a>
+        </div> -->
+      <p style="margin: 0; margin-top: 16px; color: #434343;">
+        Copyright © 2024 Company. All rights reserved.
+      </p>
+    </footer>
+  </div>
+</body>
+
+</html>
