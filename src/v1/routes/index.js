@@ -8,10 +8,8 @@ const router = express.Router();
 router.use(apiKey);
 
 router.use("/v1/api/user", require("./user"));
-router.use("/v1/api/otp", require("./otp"));
 router.use("/v1/api/sms", require("./sms"));
 router.use("/v1/api/email", require("./email"));
-router.use("/v1/api/emailotp", require("./emailotp"));
 router.use("/v1/api/access", require("./access"));
 
 //sudo role

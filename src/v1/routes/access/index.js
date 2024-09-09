@@ -11,7 +11,11 @@ router.post("/signup", asyncHandler(accessController.signUp));
 
 //login
 router.post("/login", asyncHandler(accessController.login));
-// router.post("/login_sms", asyncHandler(accessController.login_sms));
+router.post("/login-email", asyncHandler(accessController.loginWithEmail));
+router.post(
+  "/verify-login-email",
+  asyncHandler(accessController.verifyLoginWithEmail)
+);
 
 ///authentication////
 router.use(authentication);

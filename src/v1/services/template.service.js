@@ -3,7 +3,8 @@
 const { TEMPLATE_STATUS } = require("../const");
 const { BadRequestError } = require("../core/error.response");
 const templateModel = require("../models/template.model");
-const { htmlEmailToken } = require("../templates/token_email_template");
+const { htmlEmailAccess } = require("../templates/access_email_template");
+const templateFactory = require("./templateFactory.service");
 
 class Template {
   // new template
@@ -16,11 +17,14 @@ class Template {
       throw new BadRequestError("Template name is existed");
     }
 
-    //2. create a new template
+    //2. Lấy template từ factory
+    const template = templateFactory.getTemplateById(tem_id);
+
+    //3. create a new template
     const newTemplate = await templateModel.create({
-      tem_id,
-      tem_name,
-      tem_html: htmlEmailToken(),
+      tem_id: template.tem_id,
+      tem_name: template.tem_name,
+      tem_html: template.tem_html,
     });
     return newTemplate;
   };

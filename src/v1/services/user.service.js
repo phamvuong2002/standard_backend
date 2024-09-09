@@ -6,14 +6,28 @@ const EmailService = require("./email.service");
 const AccessService = require("./access.service");
 const { generateRandomPassword } = require("../utils/generateRandomPass");
 const OtpLogService = require("./otpLog.service");
+const crypto = require("crypto");
+const KeyTokenService = require("./keyToken.service");
 
 class UserService {
   //check login email token
-  static checkLoginEmailToken = async ({ token = null }) => {
+  static checkLoginEmailToken = async ({
+    code = null,
+    type = "token",
+    mail_service = "zoho",
+  }) => {
     try {
       //1 check token in db
-      const { otp_email: email, otp_token } =
-        await OtpLogService.checkEmailToken({ token });
+      let email = null;
+      if (type === "token") {
+        ({ otp_email: email } = await OtpLogService.checkEmailToken({
+          token: code,
+        }));
+      } else if (type === "otp") {
+        ({ otp_email: email } = await OtpLogService.checkEmailOtp({
+          otp: code,
+        }));
+      }
       if (!email) throw new BadRequestError("Token not found");
 
       //2 check email exists in user model
@@ -22,7 +36,6 @@ class UserService {
 
       //3 sign up
       const password = generateRandomPassword();
-      console.log("password::::", password); // TEST
       const accessData = await AccessService.signUp({
         username: email,
         email,
@@ -30,11 +43,22 @@ class UserService {
         status: "active",
         verify: true,
       });
-      return accessData;
+
+      if (!accessData) throw new BadRequestError("Signup failed");
+
+      //4 send email welcome
+      const result = await EmailService.sendEmailWelcome({
+        email,
+        mail_service,
+        userData: { ...accessData, temp_password: password },
+      });
+
+      return { ...accessData, mail: result };
     } catch (error) {
       throw new BadRequestError("Verify token failed: " + error.message);
     }
   };
+
   //new user
   static newUser = async ({
     email = null,
@@ -49,8 +73,8 @@ class UserService {
       throw new BadRequestError("Email already exists");
     }
 
-    //3. send token via email
-    const result = await EmailService.sendEmailToken({
+    //3. send code via email
+    const result = await EmailService.sendEmailAccess({
       email,
       mail_service,
     });

@@ -1,6 +1,7 @@
 "use strict";
 
 const {
+  env,
   db: { host, username, password, name },
 } = require("../configs/config");
 const mongoose = require("mongoose");
@@ -19,9 +20,11 @@ class Database {
   //connect
   connect(type = "mongodb") {
     //dev
-    if (1 === 1) {
+    if (env === "development") {
       mongoose.set("debug", true);
-      mongoose.set("debug", { color: true });
+      mongoose.set("debug", { color: true, shell: true });
+    } else {
+      mongoose.set("debug", true);
     }
 
     mongoose

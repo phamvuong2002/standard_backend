@@ -18,8 +18,11 @@ const TEMPLATE_STATUS = {
   ACTIVE: "active",
 };
 
+const OTP_LENGTH = 6;
+
 module.exports = {
   ROLES,
   USER_STATUS,
   TEMPLATE_STATUS,
+  OTP_LENGTH,
 };

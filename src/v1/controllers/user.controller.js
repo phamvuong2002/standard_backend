@@ -18,9 +18,7 @@ class UserController {
   checkLoginEmailToken = async (req, res, next) => {
     return new SuccessResponse({
       message: "Token is verified successfully",
-      metadata: await UserService.checkLoginEmailToken({
-        token: req.body.token,
-      }),
+      metadata: await UserService.checkLoginEmailToken(req.body),
     }).send(res);
   };
 }

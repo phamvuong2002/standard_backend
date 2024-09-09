@@ -17,6 +17,9 @@ var otpLogSchema = new Schema(
       type: String,
       required: true,
     },
+    otp_code: {
+      type: String,
+    },
     otp_status: {
       type: String,
       default: "pending",

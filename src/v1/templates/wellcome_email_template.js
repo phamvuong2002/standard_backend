@@ -1,6 +1,6 @@
 "use strict";
 
-const htmlEmailToken = () => {
+const htmlEmailWellcome = () => {
   return `<!--
 * This email was built using Code2D Editor designed by Pham Vuong.
 * For more information, visit https://phamvuong.io.vn
@@ -617,7 +617,7 @@ const htmlEmailToken = () => {
 
                                                                     <h1 class=t6
                                                                         style="margin:0;Margin:0;font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;line-height:28px;font-weight:800;font-style:normal;font-size:26px;text-decoration:none;text-transform:none;letter-spacing:-1.04px;direction:ltr;color:#37c9b9;text-align:center;mso-line-height-rule:exactly;mso-text-raise:1px;">
-                                                                        Send and Verify Email Token Service</h1>
+                                                                        Send and Verify Email Service</h1>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -648,262 +648,270 @@ const htmlEmailToken = () => {
                                                         </table>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td align=center>
-                                                        <table class=t15 role=presentation cellpadding=0 cellspacing=0
-                                                            style="Margin-left:auto;Margin-right:auto;">
-                                                            <tr>
+                                                <tr></tr>
+                                                <td align="center">
+                                                    <table class="otp-section" role="presentation" cellpadding="0"
+                                                        cellspacing="0" style="Margin-left:auto;Margin-right:auto;">
+                                                        <tr>
+                                                            <td class="otp-container"
+                                                                style="background-color:#f1f1f1; padding: 20px; border-radius: 8px; width: 420px; text-align:center;">
+                                                                <p
+                                                                    style="margin:0 0 10px 0; font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; font-size:14px; color:#333;">
+                                                                    Hi {{user_name}}. Thank you for successfully
+                                                                    registering for our
+                                                                    service!
+                                                                </p>
+                                                                <p
+                                                                    style="margin:0; font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; line-height:28px; font-weight:600; font-size:24px; color:#333;">
+                                                                    Your password is:
+                                                                </p>
+                                                                <h1
+                                                                    style="margin:10px 0 0 0; font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; font-size:36px; color:#37c9b9;">
+                                                                    {{password}}
+                                                                </h1>
+                                                                <p
+                                                                    style="margin:20px 0 0 0; font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif; font-size:14px; color:#333;">
+                                                                    For your security, please keep this password
+                                                                    confidential and consider updating it after your
+                                                                    first login. You can also
+                                                                    click the button below to change your password.
 
-                                                                <td class=t14 style="width:420px;padding:0 0 40px 0;">
 
-                                                                    <p class="t13"
-                                                                        style="margin:0; Margin:0; font-family:Albert Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; line-height:22px; font-weight:500; font-style:normal; font-size:14px; text-decoration:none; text-transform:none; letter-spacing:-0.56px; direction:ltr; color:#333333; text-align:center; mso-line-height-rule:exactly; mso-text-raise:2px;">
-                                                                        <span class="t12"
-                                                                            style="margin:0; Margin:0; font-style:italic; mso-line-height-rule:exactly;">
-                                                                            . The token is valid for
-                                                                            <b>{{token_duration}}
-                                                                                seconds</b> and
-                                                                            should not be shared with others.
-                                                                        </span>
-                                                                    </p>
+                                                                </p>
 
+                                                                <table class="t18" role="presentation" cellpadding="0"
+                                                                    cellspacing="0"
+                                                                    style="Margin-left:auto; Margin-right:auto; Margin-top:10px">
+                                                                    <tr>
+                                                                        <td class="t17"
+                                                                            style="background-color:#181818; overflow:hidden; width:250px; text-align:center; line-height:44px; mso-line-height-rule:exactly; mso-text-raise:10px; border-radius:44px;">
+                                                                            <!-- Add the <a> tag here to include the token link -->
+                                                                            <a href="{{change_pass_link}}"
+                                                                                style="text-decoration:none; display:block; border-radius:44px;">
+                                                                                <span class="t16"
+                                                                                    style="display: block; margin: 0; Margin: 0; font-family: Albert Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; line-height: 44px; font-weight: 800; font-style: normal; font-size: 12px; text-decoration: none; text-transform: uppercase; letter-spacing: 2.4px; direction: ltr; color: #37c9b9; text-align: center; mso-line-height-rule: exactly; mso-text-raise: 10px; cursor: pointer;"
+                                                                                    onmouseover="this.style.background='#757575';"
+                                                                                    onmouseout="this.style.color='#37c9b9'; this.style.background='#191919';">
+                                                                                    Change Your Password
+                                                                                </span>
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </td>
 
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                <tr>
-                                                    <td align="center">
-                                                        <table class="t18" role="presentation" cellpadding="0"
-                                                            cellspacing="0"
-                                                            style="Margin-left:auto; Margin-right:auto;">
-                                                            <tr>
-                                                                <td class="t17"
-                                                                    style="background-color:#181818; overflow:hidden; width:250px; text-align:center; line-height:44px; mso-line-height-rule:exactly; mso-text-raise:10px; border-radius:44px;">
-                                                                    <!-- Add the <a> tag here to include the token link -->
-                                                                    <a href="{{verify_link}}"
-                                                                        style="text-decoration:none; display:block; border-radius:44px;">
-                                                                        <span class="t16"
-                                                                            style="display: block; margin: 0; Margin: 0; font-family: Albert Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; line-height: 44px; font-weight: 800; font-style: normal; font-size: 12px; text-decoration: none; text-transform: uppercase; letter-spacing: 2.4px; direction: ltr; color: #37c9b9; text-align: center; mso-line-height-rule: exactly; mso-text-raise: 10px; cursor: pointer;"
-                                                                            onmouseover="this.style.background='#757575';"
-                                                                            onmouseout="this.style.color='#37c9b9'; this.style.background='#191919';">
-                                                                            Verify Your Email
-                                                                        </span>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                    </td>
-                                                </tr>
+                                                        </tr>
+                                                    </table>
 
+                                                </td>
                                     </tr>
-                                </table>
-                            </td>
+
                         </tr>
                     </table>
                 </td>
             </tr>
-            <tr>
-                <td align=center>
-                    <table class=t67 role=presentation cellpadding=0 cellspacing=0
-                        style="Margin-left:auto;Margin-right:auto;">
-                        <tr>
+        </table>
+        </td>
+        </tr>
+        <tr>
+            <td align=center>
+                <table class=t67 role=presentation cellpadding=0 cellspacing=0
+                    style="Margin-left:auto;Margin-right:auto;">
+                    <tr>
 
-                            <td class=t66 style="width:420px;padding:40px 30px 40px 30px;">
+                        <td class=t66 style="width:420px;padding:40px 30px 40px 30px;">
 
-                                <table role=presentation width=100% cellpadding=0 cellspacing=0
-                                    style="width:100%!important;">
-                                    <tr>
-                                        <td align=center>
-                                            <table class=t23 role=presentation cellpadding=0 cellspacing=0
-                                                style="Margin-left:auto;Margin-right:auto;">
-                                                <tr>
+                            <table role=presentation width=100% cellpadding=0 cellspacing=0
+                                style="width:100%!important;">
+                                <tr>
+                                    <td align=center>
+                                        <table class=t23 role=presentation cellpadding=0 cellspacing=0
+                                            style="Margin-left:auto;Margin-right:auto;">
+                                            <tr>
 
-                                                    <td class=t22 style="width:420px;">
+                                                <td class=t22 style="width:420px;">
 
-                                                        <p class=t21
-                                                            style="margin:0;Margin:0;font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;line-height:22px;font-weight:800;font-style:normal;font-size:18px;text-decoration:none;text-transform:none;letter-spacing:-0.9px;direction:ltr;color:#757575;text-align:center;mso-line-height-rule:exactly;mso-text-raise:1px;">
-                                                            Connect me</p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align=center>
-                                            <table class=t56 role=presentation cellpadding=0 cellspacing=0
-                                                style="Margin-left:auto;Margin-right:auto;">
-                                                <tr>
+                                                    <p class=t21
+                                                        style="margin:0;Margin:0;font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;line-height:22px;font-weight:800;font-style:normal;font-size:18px;text-decoration:none;text-transform:none;letter-spacing:-0.9px;direction:ltr;color:#757575;text-align:center;mso-line-height-rule:exactly;mso-text-raise:1px;">
+                                                        Connect me</p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align=center>
+                                        <table class=t56 role=presentation cellpadding=0 cellspacing=0
+                                            style="Margin-left:auto;Margin-right:auto;">
+                                            <tr>
 
-                                                    <td class=t55 style="width:420px;padding:10px 0 36px 0;">
+                                                <td class=t55 style="width:420px;padding:10px 0 36px 0;">
 
-                                                        <div class=t54
-                                                            style="display:inline-table;width:100%;text-align:center;vertical-align:top;">
+                                                    <div class=t54
+                                                        style="display:inline-table;width:100%;text-align:center;vertical-align:top;">
 
-                                                            <!-- Facboook -->
-                                                            <a href='https://www.fb.com/phamhihihi' target="_blank"
-                                                                rel="noopener" class=t35
-                                                                style=" cursor:pointer;
+                                                        <!-- Facboook -->
+                                                        <a href='https://www.fb.com/phamhihihi' target="_blank"
+                                                            rel="noopener" class=t35
+                                                            style=" cursor:pointer;
                                                                 display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
-                                                                <div class=t34 style="padding:0 10px 0 10px;">
-                                                                    <table role=presentation width=100% cellpadding=0
-                                                                        cellspacing=0 class=t33
-                                                                        style="width:100%!important;">
-                                                                        <tr>
-                                                                            <td class=t32>
-                                                                                <div style="font-size:0px;">
-                                                                                    <img class=t30
-                                                                                        style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
-                                                                                        width=24 height=24 alt=""
-                                                                                        src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174135/Icon/logo_fb_tx75dn.png" />
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>
-                                                            </a>
+                                                            <div class=t34 style="padding:0 10px 0 10px;">
+                                                                <table role=presentation width=100% cellpadding=0
+                                                                    cellspacing=0 class=t33
+                                                                    style="width:100%!important;">
+                                                                    <tr>
+                                                                        <td class=t32>
+                                                                            <div style="font-size:0px;">
+                                                                                <img class=t30
+                                                                                    style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
+                                                                                    width=24 height=24 alt=""
+                                                                                    src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174135/Icon/logo_fb_tx75dn.png" />
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </a>
 
-                                                            <a href='https://www.youtube.com/@phamvuong6728'
-                                                                target='_blank' rel="noopener" class=t41
-                                                                style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
-                                                                <div class=t40 style="padding:0 10px 0 10px;">
-                                                                    <table role=presentation width=100% cellpadding=0
-                                                                        cellspacing=0 class=t39
-                                                                        style="width:100%!important;">
-                                                                        <tr>
-                                                                            <td class=t38>
-                                                                                <div style="font-size:0px;">
-                                                                                    <img class=t36
-                                                                                        style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
-                                                                                        width=24 height=24 alt=""
-                                                                                        src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174247/Icon/icons8-youtube-50_mkwccu.png" />
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>
-                                                            </a>
+                                                        <a href='https://www.youtube.com/@phamvuong6728' target='_blank'
+                                                            rel="noopener" class=t41
+                                                            style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
+                                                            <div class=t40 style="padding:0 10px 0 10px;">
+                                                                <table role=presentation width=100% cellpadding=0
+                                                                    cellspacing=0 class=t39
+                                                                    style="width:100%!important;">
+                                                                    <tr>
+                                                                        <td class=t38>
+                                                                            <div style="font-size:0px;">
+                                                                                <img class=t36
+                                                                                    style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
+                                                                                    width=24 height=24 alt=""
+                                                                                    src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174247/Icon/icons8-youtube-50_mkwccu.png" />
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </a>
 
-                                                            <a href='https://www.linkedin.com/in/phamvuong2002/'
-                                                                target='_blank' rel="noopener" class=t47
-                                                                style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
-                                                                <div class=t46 style="padding:0 10px 0 10px;">
-                                                                    <table role=presentation width=100% cellpadding=0
-                                                                        cellspacing=0 class=t45
-                                                                        style="width:100%!important;">
-                                                                        <tr>
-                                                                            <td class=t44>
-                                                                                <div style="font-size:0px;">
-                                                                                    <img class=t42
-                                                                                        style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
-                                                                                        width=24 height=24 alt=""
-                                                                                        src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174135/Icon/logo_linkedin_t0rybv.png" />
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>
-                                                            </a>
+                                                        <a href='https://www.linkedin.com/in/phamvuong2002/'
+                                                            target='_blank' rel="noopener" class=t47
+                                                            style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
+                                                            <div class=t46 style="padding:0 10px 0 10px;">
+                                                                <table role=presentation width=100% cellpadding=0
+                                                                    cellspacing=0 class=t45
+                                                                    style="width:100%!important;">
+                                                                    <tr>
+                                                                        <td class=t44>
+                                                                            <div style="font-size:0px;">
+                                                                                <img class=t42
+                                                                                    style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
+                                                                                    width=24 height=24 alt=""
+                                                                                    src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174135/Icon/logo_linkedin_t0rybv.png" />
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </a>
 
-                                                            <a href='https://www.t.me/phamvuong2002' target='_blank'
-                                                                rel="noopener" class=t35
-                                                                style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
-                                                                <div class=t34 style="padding:0 10px 0 10px;">
-                                                                    <table role=presentation width=100% cellpadding=0
-                                                                        cellspacing=0 class=t33
-                                                                        style="width:100%!important;">
-                                                                        <tr>
-                                                                            <td class=t32>
-                                                                                <div style="font-size:0px;">
-                                                                                    <img class=t30
-                                                                                        style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
-                                                                                        width=24 height=24 alt=""
-                                                                                        src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174135/Icon/logo_telegram_vhq0hu.png" />
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>
-                                                            </a>
+                                                        <a href='https://www.t.me/phamvuong2002' target='_blank'
+                                                            rel="noopener" class=t35
+                                                            style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
+                                                            <div class=t34 style="padding:0 10px 0 10px;">
+                                                                <table role=presentation width=100% cellpadding=0
+                                                                    cellspacing=0 class=t33
+                                                                    style="width:100%!important;">
+                                                                    <tr>
+                                                                        <td class=t32>
+                                                                            <div style="font-size:0px;">
+                                                                                <img class=t30
+                                                                                    style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
+                                                                                    width=24 height=24 alt=""
+                                                                                    src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174135/Icon/logo_telegram_vhq0hu.png" />
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </a>
 
-                                                            <a href='https://github.com/phamvuong2002' target='_blank'
-                                                                rel="noopener" class=t35
-                                                                style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
-                                                                <div class=t34 style="padding:0 10px 0 10px;">
-                                                                    <table role=presentation width=100% cellpadding=0
-                                                                        cellspacing=0 class=t33
-                                                                        style="width:100%!important;">
-                                                                        <tr>
-                                                                            <td class=t32>
-                                                                                <div style="font-size:0px;">
-                                                                                    <img class=t30
-                                                                                        style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
-                                                                                        width=24 height=24 alt=""
-                                                                                        src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174136/Icon/logo_github_zvy7qj.png" />
-                                                                                </div>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </table>
-                                                                </div>
-                                                            </a>
+                                                        <a href='https://github.com/phamvuong2002' target='_blank'
+                                                            rel="noopener" class=t35
+                                                            style="cursor:pointer; display:inline-table;text-align:initial;vertical-align:inherit;width:10.47619%;max-width:44px;">
+                                                            <div class=t34 style="padding:0 10px 0 10px;">
+                                                                <table role=presentation width=100% cellpadding=0
+                                                                    cellspacing=0 class=t33
+                                                                    style="width:100%!important;">
+                                                                    <tr>
+                                                                        <td class=t32>
+                                                                            <div style="font-size:0px;">
+                                                                                <img class=t30
+                                                                                    style="display:block;border:0;height:auto;width:100%;Margin:0;max-width:100%;"
+                                                                                    width=24 height=24 alt=""
+                                                                                    src="https://res.cloudinary.com/dayrqfwxo/image/upload/v1725174136/Icon/logo_github_zvy7qj.png" />
+                                                                            </div>
+                                                                        </td>
+                                                                    </tr>
+                                                                </table>
+                                                            </div>
+                                                        </a>
 
 
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align=center>
-                                            <table class=t59 role=presentation cellpadding=0 cellspacing=0
-                                                style="Margin-left:auto;Margin-right:auto;">
-                                                <tr>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align=center>
+                                        <table class=t59 role=presentation cellpadding=0 cellspacing=0
+                                            style="Margin-left:auto;Margin-right:auto;">
+                                            <tr>
 
-                                                    <td class=t58 style="width:420px;">
+                                                <td class=t58 style="width:420px;">
 
-                                                        <p class="t57"
-                                                            style="margin:0; Margin:0; font-family:Albert Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; line-height:22px; font-weight:500; font-style:normal; font-size:12px; text-decoration:none; text-transform:none; direction:ltr; color:#888888; text-align:center; mso-line-height-rule:exactly; mso-text-raise:3px;">
-                                                            Design by Pham Vuong
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align=center>
-                                            <table class=t65 role=presentation cellpadding=0 cellspacing=0
-                                                style="Margin-left:auto;Margin-right:auto;">
-                                                <tr>
+                                                    <p class="t57"
+                                                        style="margin:0; Margin:0; font-family:Albert Sans, BlinkMacSystemFont, Segoe UI, Helvetica Neue, Arial, sans-serif; line-height:22px; font-weight:500; font-style:normal; font-size:12px; text-decoration:none; text-transform:none; direction:ltr; color:#888888; text-align:center; mso-line-height-rule:exactly; mso-text-raise:3px;">
+                                                        Design by Pham Vuong
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align=center>
+                                        <table class=t65 role=presentation cellpadding=0 cellspacing=0
+                                            style="Margin-left:auto;Margin-right:auto;">
+                                            <tr>
 
-                                                    <td class=t64 style="width:420px;">
+                                                <td class=t64 style="width:420px;">
 
-                                                        <p class=t63
-                                                            style="margin:0;Margin:0;font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#888888;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;">
-                                                            <a class=t60 href="https://phamvuong.io.vn"
-                                                                style="margin:0;Margin:0;font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
-                                                                target=_blank>Visit my web</a>&nbsp; •&nbsp;
-                                                            <a class=t61 href="https://phamvuong.io.vn"
-                                                                style="margin:0;Margin:0;font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
-                                                                target=_blank>License</a>&nbsp;
-                                                            •&nbsp; <a class=t62 href="https://phamvuong.io.vn"
-                                                                style="margin:0;Margin:0;font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#878787;mso-line-height-rule:exactly;"
-                                                                target=_blank>Contact me</a>
-                                                        </p>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
+                                                    <p class=t63
+                                                        style="margin:0;Margin:0;font-family:Albert Sans,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,sans-serif;line-height:22px;font-weight:500;font-style:normal;font-size:12px;text-decoration:none;text-transform:none;direction:ltr;color:#888888;text-align:center;mso-line-height-rule:exactly;mso-text-raise:3px;">
+                                                        <a class=t60 href="https://phamvuong.io.vn"
+                                                            style="margin:0;Margin:0;font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
+                                                            target=_blank>Visit my web</a>&nbsp; •&nbsp;
+                                                        <a class=t61 href="https://phamvuong.io.vn"
+                                                            style="margin:0;Margin:0;font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#888888;mso-line-height-rule:exactly;"
+                                                            target=_blank>License</a>&nbsp;
+                                                        •&nbsp; <a class=t62 href="https://phamvuong.io.vn"
+                                                            style="margin:0;Margin:0;font-weight:700;font-style:normal;text-decoration:none;direction:ltr;color:#878787;mso-line-height-rule:exactly;"
+                                                            target=_blank>Contact me</a>
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
         </table>
         </td>
         </tr>
@@ -915,5 +923,5 @@ const htmlEmailToken = () => {
 };
 
 module.exports = {
-  htmlEmailToken,
+  htmlEmailWellcome,
 };

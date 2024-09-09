@@ -11,15 +11,16 @@ const OtpLogService = require("./otpLog.service");
 const Template = require("./template.service");
 
 class EmailService {
-  // Send email containing tokens to access
-  static sendEmailToken = async ({ email, mail_service }) => {
+  // Send email welcome
+  static sendEmailWelcome = async ({
+    email,
+    mail_service,
+    userData = null,
+  }) => {
     try {
-      // 1. Get token
-      const token = await OtpLogService.newOtpLog({ email });
-
-      // 2. Get template
+      // 1. Get template
       const template = await Template.getTemplate({
-        tem_name: "HTML EMAIL TOKEN",
+        tem_name: "HTML EMAIL WELCOME",
       });
 
       if (!template) {
@@ -30,12 +31,55 @@ class EmailService {
 
       // 3. Replace placeholder
       const content = await replacePlaceholder(template.tem_html, {
-        token_duration: 60,
-        verify_link: `https://phamvuong.io.vn?token=${token.otp_token}`,
+        user_name: userData.metadata.user.email,
+        password: userData.temp_password,
+        change_pass_link: `https://phamvuong.io.vn?access_token=${userData.metadata.tokens.accessToken}`,
       });
 
       // 4. Send email
-      const result = await EmailService.sendEmailLinkVerify({
+      const result = await EmailService.sendEmail({
+        html: content,
+        toEmail: email,
+        strategyType: mail_service,
+        subject: "Welcome to PhamVuong.io.vn",
+      });
+
+      if (result.status === 0) {
+        return { mail_service, email, status: 0, error: result.error };
+      }
+
+      return { mail_service, email, status: 1, info: result?.info }; // 1 - sent successfully
+    } catch (error) {
+      return { mail_service, email, status: 0, error: error.message }; // Return error
+    }
+  };
+
+  // Send email containing tokens to access
+  static sendEmailAccess = async ({ email, mail_service }) => {
+    try {
+      // 1. Get token
+      const newCode = await OtpLogService.newOtpLog({ email });
+
+      // 2. Get template
+      const template = await Template.getTemplate({
+        tem_name: "HTML EMAIL ACCESS",
+      });
+
+      if (!template) {
+        throw new NotFoundError({
+          message: "Template is not available",
+        });
+      }
+
+      // 3. Replace placeholder
+      const content = await replacePlaceholder(template.tem_html, {
+        token_duration: 10,
+        otp_code: newCode.otp_code,
+        verify_link: `https://phamvuong.io.vn?token=${newCode.otp_token}`,
+      });
+
+      // 4. Send email
+      const result = await EmailService.sendEmail({
         html: content,
         toEmail: email,
         strategyType: mail_service,
@@ -51,7 +95,7 @@ class EmailService {
     }
   };
 
-  static async sendEmailLinkVerify({
+  static async sendEmail({
     html,
     toEmail,
     strategyType = "outlook",

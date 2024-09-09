@@ -1,6 +1,7 @@
 "use strict";
 
 const development = {
+  env: "development",
   app: {
     port: process.env.DEV_APP_PORT || 3055,
   },
@@ -28,6 +29,7 @@ const development = {
 };
 
 const production = {
+  env: "production",
   app: {
     port: process.env.PRO_APP_PORT || 3055,
   },

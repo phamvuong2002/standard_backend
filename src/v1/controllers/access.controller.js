@@ -7,6 +7,23 @@ const { AuthFailureError } = require("../core/error.response");
 const { request } = require("express");
 
 class AccessController {
+  loginWithEmail = async (req, res, next) => {
+    new SuccessResponse({
+      metadata: await AccessService.loginWithEmail(req.body),
+    }).send(res);
+  };
+
+  verifyLoginWithEmail = async (req, res, next) => {
+    const user = await AccessService.verifyLoginWithEmail(req.body);
+    if (user) {
+      new SuccessResponse({
+        metadata: user,
+      }).send(res);
+    } else {
+      new AuthFailureError("Invalid Request");
+    }
+  };
+
   signUp = async (req, res, next) => {
     new CREATED({
       message: "Regiserted OK!",

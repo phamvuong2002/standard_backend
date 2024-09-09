@@ -1,7 +1,7 @@
 const generateRandomPassword = (length = 12) => {
   // Các ký tự có thể sử dụng trong mật khẩu
   const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]{}|;:,.<>?";
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+[]|;:,.?";
 
   let password = "";
 

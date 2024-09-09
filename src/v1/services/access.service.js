@@ -15,10 +15,117 @@ const {
 } = require("../core/error.response");
 const Identifier = require("./identifier.service");
 const { USER_STATUS, ROLES } = require("../const");
+const OtpLogService = require("./otpLog.service");
+const EmailService = require("./email.service");
 
 /// services ///
 
 class AccessService {
+  static loginWithEmail = async ({ email, mail_service, captcha = null }) => {
+    //1. check email in db
+    const foundUser = await userModel.findOne({ email }).lean();
+    if (!foundUser) throw new BadRequestError("User not registered");
+    if (!foundUser.verify)
+      throw new BadRequestError("User have not verified yet");
+    if (foundUser.status === USER_STATUS.INACTIVE)
+      throw new BadRequestError("User have been inactive");
+
+    //2. send code via email
+    const result = await EmailService.sendEmailAccess({
+      email,
+      mail_service,
+    });
+
+    return {
+      message: "verify email",
+      metadata: {
+        service: result?.mail_service,
+        toEmail: result?.email,
+        status: result?.status,
+        info: result?.info,
+        error: result?.error,
+      },
+    };
+  };
+
+  /*verifyLoginWithEmail*/
+  static verifyLoginWithEmail = async ({
+    email,
+    code,
+    type = "token",
+    refreshToken = null,
+  }) => {
+    // 1 - check account in dbs
+    const foundUser = await userModel.findOne({ email }).lean();
+    if (!foundUser) throw new BadRequestError("User not registered");
+    if (!foundUser.verify)
+      throw new BadRequestError("User have not verified yet");
+    if (foundUser.status === USER_STATUS.INACTIVE)
+      throw new BadRequestError("User have been inactive");
+
+    //2 - check code
+    if (type === "token") {
+      const { otp_email } = await OtpLogService.checkEmailToken({
+        token: code,
+      });
+      if (!otp_email || otp_email != foundUser.email)
+        throw new AuthFailureError("Authentication failed");
+    } else if (type === "otp") {
+      const { otp_email } = await OtpLogService.checkEmailOtp({
+        otp: code,
+      });
+      if (!otp_email || otp_email != foundUser.email)
+        throw new AuthFailureError("Authentication failed");
+    } else {
+      throw new AuthFailureError("Authentication failed");
+    }
+
+    //3 create private key, public key (private key used for syncing a token
+    //and public key used for validation that token)
+    const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
+      modulusLength: 4096,
+      publicKeyEncoding: {
+        type: "pkcs1",
+        format: "pem",
+      },
+      privateKeyEncoding: {
+        type: "pkcs1",
+        format: "pem",
+      },
+    });
+    //create public key for decoding token
+    const publicKeyString = await KeyTokenService.createKeyToken({
+      userId: foundUser._id,
+      publicKey: publicKey,
+    });
+
+    //4 - generate Token
+    const tokens = await createTokenPair(
+      {
+        userId: foundUser._id,
+        username: foundUser.username,
+        email: foundUser.email,
+      },
+      publicKeyString,
+      privateKey
+    );
+
+    //5 - get data and return
+    await KeyTokenService.createKeyToken({
+      userId: foundUser._id,
+      publicKey: publicKey,
+      refreshToken: tokens.refreshToken,
+    });
+    return {
+      user: getInfoData({
+        fileds: ["_id", "username", "email", "roles"],
+        object: foundUser,
+      }),
+      tokens,
+    };
+  };
+
+  /*signup*/
   static signUp = async ({
     username,
     email,
@@ -254,63 +361,6 @@ class AccessService {
         username: foundUser.username,
         email: foundUser.email,
       },
-      tokens,
-    };
-  };
-
-  static login_sms = async ({ phone }) => {
-    // 1 Kiểm tra user đăng nhập = sđt
-    // console.log('in login user')
-    // console.log(loginMethod, loginMethodValue, password)
-
-    let foundUser = await userModel.findOne({ phone: phone }).lean();
-
-    //Không tìm thấy úuer
-    if (!foundUser) throw new BadRequestError("Authentication failed");
-
-    //3 create private key, public key (private key used for syncing a token
-    //and public key used for validation that token)
-    const { privateKey, publicKey } = crypto.generateKeyPairSync("rsa", {
-      modulusLength: 4096,
-      publicKeyEncoding: {
-        type: "pkcs1",
-        format: "pem",
-      },
-      privateKeyEncoding: {
-        type: "pkcs1",
-        format: "pem",
-      },
-    });
-    //create public key for decoding token
-    const publicKeyString = await KeyTokenService.createKeyToken({
-      userId: foundUser._id,
-      publicKey: publicKey,
-    });
-
-    //4
-    const tokens = await createTokenPair(
-      {
-        userId: foundUser._id,
-        username: foundUser.username,
-        email: foundUser.email,
-      },
-      publicKeyString,
-      privateKey
-    );
-
-    //5
-    await KeyTokenService.createKeyToken({
-      userId: foundUser._id,
-      publicKey: publicKey,
-      refreshToken: tokens.refreshToken,
-    });
-
-    // const foundUserDB = await db.user.findOne({ user_sid: foundUser._id })
-    return {
-      user: getInfoData({
-        fileds: ["_id", "username", "phone", "roles"],
-        object: foundUser,
-      }),
       tokens,
     };
   };

@@ -5,7 +5,7 @@ const { findById } = require("../services/apiKey.service");
 const HEADER = {
   API_KEY: "x-api-key",
   AUTHORIZATION: "authorization",
-  API_KEY_USER: "api-key",
+  API_KEY_SUDO: "api-key",
 };
 
 const SECRET_KEY = "sudo-0104";
@@ -13,9 +13,9 @@ const SECRET_KEY = "sudo-0104";
 const apiKey = async (req, res, next) => {
   try {
     const key = req.headers[HEADER.API_KEY]?.toString();
-    if (!key) {
-      const key_bookada = req.headers[HEADER.API_KEY_USER]?.toString();
-      if (key_bookada === SECRET_KEY) {
+    const key_sudo = req.headers[HEADER.API_KEY_SUDO]?.toString();
+    if (!key || key_sudo) {
+      if (key_sudo === SECRET_KEY) {
         req.objkey = "0104";
         return next();
       }
