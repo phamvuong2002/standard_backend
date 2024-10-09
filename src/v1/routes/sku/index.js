@@ -6,10 +6,10 @@ const router = express.Router();
 const { asyncHandler } = require("../../auth/checkAuth");
 const { authentication } = require("../../auth/authUtils");
 const container = require("../../containers/di-container");
-const spuController = container.resolve("spuController");
+const skuController = container.resolve("skuController");
 
 //create new spu
-router.post("/create-spu", asyncHandler(spuController.createSpu));
+router.post("/create-sku", asyncHandler(skuController.createSku));
 
 ///authentication////
 router.use(authentication);

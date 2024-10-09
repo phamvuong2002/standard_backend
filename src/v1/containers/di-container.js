@@ -17,5 +17,7 @@ container.loadModules(
     formatName: (name) => toCamelCase(name), // Sử dụng hàm toCamelCase để chuyển đổi tên
   }
 );
+// Thêm log để kiểm tra các registration trong container
+console.log(container.registrations);
 
 module.exports = container;

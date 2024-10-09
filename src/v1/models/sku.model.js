@@ -16,7 +16,7 @@ var skuSchema = new Schema(
     sku_tier_idx: { type: Array, default: [0], required: true },
     sku_default: { type: Boolean, required: true, default: false },
     sku_slug: { type: String, required: true },
-    sku_sort: { Type: Number, required: true, default: 0 },
+    sku_sort: { type: Number, required: true, default: 0 },
     sku_stock_id: { type: String, required: true },
     sku_spu_id: {
       type: Schema.Types.ObjectId,

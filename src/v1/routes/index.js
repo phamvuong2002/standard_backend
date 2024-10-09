@@ -7,6 +7,7 @@ const router = express.Router();
 // check apiKey
 router.use(apiKey);
 
+router.use("/v1/api/sku", require("./sku"));
 router.use("/v1/api/spu", require("./spu"));
 router.use("/v1/api/brand", require("./brand"));
 router.use("/v1/api/user", require("./user"));

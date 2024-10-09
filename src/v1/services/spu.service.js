@@ -1,14 +1,16 @@
 "use strict";
 
 const spuModel = require("../models/spu.model");
-const brandModel = require("../models/brand.model");
 const { BadRequestError } = require("../core/error.response");
 const slugify = require("slugify");
-const BrandService = require("./brand.service");
+// const BrandService = require("./brand.service");
 
 class SpuService {
+  constructor({ brandService }) {
+    this.brandService = brandService;
+  }
   // Tạo mới một SPU
-  static async createSpu({
+  async createSpu({
     spu_name,
     spu_thumbnail,
     spu_description,
@@ -32,7 +34,7 @@ class SpuService {
     }
 
     // Kiểm tra thương hiệu (brand) có tồn tại hay không
-    const brand = await BrandService.getBrandIdByName(spu_brand);
+    const brand = await this.brandService.getBrandIdByName(spu_brand);
     if (!brand) throw new BadRequestError("Band name is not found");
 
     // Tạo mới SPU
@@ -56,7 +58,7 @@ class SpuService {
   }
 
   // Tìm kiếm SPU theo ID
-  static async getSpuById(spuId) {
+  async getSpuById(spuId) {
     const spu = await spuModel.findById(spuId).populate("spu_brand");
     if (!spu) {
       throw new BadRequestError("SPU not found");
@@ -65,7 +67,7 @@ class SpuService {
   }
 
   // Cập nhật thông tin SPU
-  static async updateSpu(spuId, updateData) {
+  async updateSpu(spuId, updateData) {
     const spu = await spuModel.findByIdAndUpdate(spuId, updateData, {
       new: true,
       runValidators: true,
@@ -79,7 +81,7 @@ class SpuService {
   }
 
   // Xoá SPU
-  static async deleteSpu(spuId) {
+  async deleteSpu(spuId) {
     const deletedSpu = await spuModel.findByIdAndDelete(spuId);
     if (!deletedSpu) {
       throw new BadRequestError("SPU not found");
@@ -89,7 +91,7 @@ class SpuService {
   }
 
   // Lấy tất cả các SPU
-  static async getAllSpus({ limit = 10, skip = 0, sort = "createdAt" }) {
+  async getAllSpus({ limit = 10, skip = 0, sort = "createdAt" }) {
     const spus = await spuModel
       .find()
       .populate("spu_brand")
